@@ -137,6 +137,7 @@
   <ItemGroup>
     <Folder Include="NewFolder1\" />
     <Folder Include="Objects\" />
+    <Folder Include="Resources\img\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

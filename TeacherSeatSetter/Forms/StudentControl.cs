@@ -27,6 +27,7 @@ namespace TeacherSeatSetter {
             Microsoft.Office.Interop.Excel.Application excelApplication = null;
             Workbook workbook = null;
             try {
+                OpenFileDialog ofd = new OpenFileDialog();
 
             }catch(Exception ex) {
 

@@ -137,7 +137,10 @@
   <ItemGroup>
     <Folder Include="NewFolder1\" />
     <Folder Include="Objects\" />
-    <Folder Include="Resources\img\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\img\excelDownloadIcon.png" />
+    <Content Include="Resources\img\excelUploadIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

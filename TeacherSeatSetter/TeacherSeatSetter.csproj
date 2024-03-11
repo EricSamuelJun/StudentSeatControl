@@ -82,6 +82,9 @@
     <Compile Include="Forms\StudentControl.Designer.cs">
       <DependentUpon>StudentControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudentTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

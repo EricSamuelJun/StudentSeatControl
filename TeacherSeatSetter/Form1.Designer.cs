@@ -25,9 +25,9 @@
         private void InitializeComponent() {
             this.contentPanel = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.btn_1 = new MetroFramework.Controls.MetroButton();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
+            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.btn_1 = new MetroFramework.Controls.MetroButton();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +67,25 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
+            // metroButton3
+            // 
+            this.metroButton3.Location = new System.Drawing.Point(33, 285);
+            this.metroButton3.Name = "metroButton3";
+            this.metroButton3.Size = new System.Drawing.Size(117, 105);
+            this.metroButton3.TabIndex = 4;
+            this.metroButton3.Text = "좌석 보기";
+            this.metroButton3.UseSelectable = true;
+            // 
+            // metroButton2
+            // 
+            this.metroButton2.Location = new System.Drawing.Point(33, 168);
+            this.metroButton2.Name = "metroButton2";
+            this.metroButton2.Size = new System.Drawing.Size(117, 71);
+            this.metroButton2.TabIndex = 3;
+            this.metroButton2.Text = "학생명부 관리";
+            this.metroButton2.UseSelectable = true;
+            this.metroButton2.Click += new System.EventHandler(this.StudentControllClick);
+            // 
             // btn_1
             // 
             this.btn_1.BackColor = System.Drawing.Color.Cyan;
@@ -77,24 +96,6 @@
             this.btn_1.Text = "좌석관리";
             this.btn_1.UseCustomBackColor = true;
             this.btn_1.UseSelectable = true;
-            // 
-            // metroButton2
-            // 
-            this.metroButton2.Location = new System.Drawing.Point(33, 168);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(117, 71);
-            this.metroButton2.TabIndex = 3;
-            this.metroButton2.Text = "학생명부 관리";
-            this.metroButton2.UseSelectable = true;
-            // 
-            // metroButton3
-            // 
-            this.metroButton3.Location = new System.Drawing.Point(33, 285);
-            this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(117, 105);
-            this.metroButton3.TabIndex = 4;
-            this.metroButton3.Text = "좌석 보기";
-            this.metroButton3.UseSelectable = true;
             // 
             // Form1
             // 

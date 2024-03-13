@@ -107,7 +107,7 @@ namespace TeacherSeatSetter.Objects {
 
             string jsonString = string.Empty;
             jsonString = JsonConvert.SerializeObject(content);
-
+            Console.WriteLine("Json: "+jsonString);
 
             string strEncrypted = string.Empty;
             if (encryption) {
@@ -130,7 +130,7 @@ namespace TeacherSeatSetter.Objects {
                     fileStr = this.Decrypt(fileStr);
                 }
                 Console.WriteLine(fileStr);
-                return JsonConvert.DeserializeObject(fileStr);
+                return fileStr;
             }catch(Exception ex) {
                 return null;
             }

@@ -16,7 +16,6 @@ using TeacherSeatSetter.Objects;
 namespace TeacherSeatSetter {
     public partial class StudentControl : MetroFramework.Controls.MetroUserControl {
         public List<StudentTable> students = null;
-        List<string> studentNames = null;
         WaitModal waitmodal;
         bool isStop = false;
         public StudentControl() {
@@ -28,20 +27,25 @@ namespace TeacherSeatSetter {
             //데이터 로드
             var data =  FileManagement.manager.LoadFile("students",true);
             try {
-                students = (data == null ? new List<StudentTable>() : (List<StudentTable>)data);
-            }catch(Exception ex) { students = new List<StudentTable>(); }
-            studentNames = new List<string>();
+                students = (data == null  ? new List<StudentTable>() : (Newtonsoft.Json.JsonConvert.DeserializeObject<List<StudentTable>>((string)data)));
+            }catch(Exception ex) {
+                Console.WriteLine("Exception: "+ex.Message+"\n"+ex.StackTrace);
+                students = new List<StudentTable>();
+            }
+
+            Console.WriteLine("class Count: "+students.Count);
+
+            grdStudentList.AutoGenerateColumns = false;
             reloadNameList();
-            
         }
         public void reloadNameList() {
-            studentNames.Clear();
-            foreach(StudentTable st in students) {
-                studentNames.Add(st.cName);
+            comboClass.Items.Clear();   
+            foreach(StudentTable student in students) {
+                Console.WriteLine("className: "+student.cName);
+                comboClass.Items.Add(student);
             }
-            comboClass.Items.Clear();
-            comboClass.Items.AddRange(studentNames.ToArray());
-            
+
+            this.grdStudentList.DataSource = null;
         }
 
         private void whenExcelSampleDownloadClicked(object sender, EventArgs e) {
@@ -134,17 +138,18 @@ namespace TeacherSeatSetter {
                     string name = string.Empty;
                     int number = 0;
                     bool isError = false;
+                    
                     try {
                         ban = (string)(usedRange.Cells[row, 1] as Excel.Range).Value2;
                         name = (string)(usedRange.Cells[row, 2] as Excel.Range).Value2;
                         number = (int)(usedRange.Cells[row, 3] as Excel.Range).Value2;
                         count++;
-                        stuTable.AddRow(Convert.ToInt16(number), name, ban);
+                        stuTable.AddRow(Convert.ToInt16(number), name, ban,row-2);
                     }
                     catch(Exception ex) {
                         isError = true;
                         errorCnt++;
-                        Console.WriteLine("Error on code StudentControl.cs line 145\n"+ex.Message + "\n\n\n"+ex.StackTrace+ "\n\n\n");
+                        Console.WriteLine("Error on code StudentControl.cs line 145, Excel Row: "+row+"\n"+ex.Message + "\n\n\n"+ex.StackTrace+ "\n\n\n");
                     }
                     
                 }
@@ -170,6 +175,7 @@ namespace TeacherSeatSetter {
             if (waitmodal != null)
                 return;
             waitmodal = new WaitModal();
+            
             Console.WriteLine("wait modal on");
             if (waitmodal.ContainsFocus) {
                 Form.ActiveForm.Opacity = 0.50;
@@ -189,17 +195,18 @@ namespace TeacherSeatSetter {
         }
         //해당 combobox 삭제
         private void btnDelete_Click(object sender, EventArgs e) {
-
+            StudentTable st = comboClass.SelectedItem as StudentTable;
+            students.Remove(st);
+            reloadNameList();
         }
         //콤보박스 새로고침
         private void comboClass_SelectionChangeCommitted(object sender, EventArgs e) {
             //바뀌면 grd 바꿔놓기
-            string value = (string)comboClass.Items[comboClass.SelectedIndex];
-
+            this.grdStudentList.DataSource = (comboClass.SelectedItem as StudentTable).dataTable;
         }
         protected override void OnHandleDestroyed(EventArgs e) {
             if (students.Count == 0) {
-                return;
+                //return;
             }
             FileManagement.manager.SaveFile("students", students, true);
             base.OnHandleDestroyed(e);

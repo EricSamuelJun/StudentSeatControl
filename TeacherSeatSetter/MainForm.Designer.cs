@@ -1,5 +1,5 @@
 ﻿namespace TeacherSeatSetter {
-    partial class Form1 {
+    partial class MainForm {
         /// <summary>
         /// 필수 디자이너 변수입니다.
         /// </summary>
@@ -23,11 +23,12 @@
         /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contentPanel = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroButton3 = new MetroFramework.Controls.MetroButton();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
-            this.btn_1 = new MetroFramework.Controls.MetroButton();
+            this.btnSeatManage = new MetroFramework.Controls.MetroButton();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +42,7 @@
             this.contentPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.contentPanel.HorizontalScrollbarSize = 10;
             this.contentPanel.Location = new System.Drawing.Point(200, 35);
-            this.contentPanel.Margin = new System.Windows.Forms.Padding(5);
+            this.contentPanel.Margin = new System.Windows.Forms.Padding(0);
             this.contentPanel.Name = "contentPanel";
             this.contentPanel.Size = new System.Drawing.Size(795, 660);
             this.contentPanel.TabIndex = 0;
@@ -54,7 +55,7 @@
             this.metroPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.metroPanel1.Controls.Add(this.metroButton3);
             this.metroPanel1.Controls.Add(this.metroButton2);
-            this.metroPanel1.Controls.Add(this.btn_1);
+            this.metroPanel1.Controls.Add(this.btnSeatManage);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel1.HorizontalScrollbarSize = 10;
@@ -86,16 +87,17 @@
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.StudentControllClick);
             // 
-            // btn_1
+            // btnSeatManage
             // 
-            this.btn_1.BackColor = System.Drawing.Color.Cyan;
-            this.btn_1.Location = new System.Drawing.Point(33, 38);
-            this.btn_1.Name = "btn_1";
-            this.btn_1.Size = new System.Drawing.Size(117, 70);
-            this.btn_1.TabIndex = 2;
-            this.btn_1.Text = "좌석관리";
-            this.btn_1.UseCustomBackColor = true;
-            this.btn_1.UseSelectable = true;
+            this.btnSeatManage.BackColor = System.Drawing.Color.Cyan;
+            this.btnSeatManage.Location = new System.Drawing.Point(33, 38);
+            this.btnSeatManage.Name = "btnSeatManage";
+            this.btnSeatManage.Size = new System.Drawing.Size(117, 70);
+            this.btnSeatManage.TabIndex = 2;
+            this.btnSeatManage.Text = "좌석관리";
+            this.btnSeatManage.UseCustomBackColor = true;
+            this.btnSeatManage.UseSelectable = true;
+            this.btnSeatManage.Click += new System.EventHandler(this.btnSeatOnClicked);
             // 
             // Form1
             // 
@@ -107,6 +109,7 @@
             this.Controls.Add(this.contentPanel);
             this.DisplayHeader = false;
             this.Font = new System.Drawing.Font("넥슨Lv2고딕", 9F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(20, 32, 20, 22);
             this.Resizable = false;
@@ -122,7 +125,7 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroButton metroButton3;
         private MetroFramework.Controls.MetroButton metroButton2;
-        private MetroFramework.Controls.MetroButton btn_1;
+        private MetroFramework.Controls.MetroButton btnSeatManage;
     }
 }
 

@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TeacherSeatSetter {
-    public partial class Form1 : MetroFramework.Forms.MetroForm {
+    public partial class MainForm : MetroFramework.Forms.MetroForm {
         SeatControl seatControl;
         StudentControl studentControl;
         public List<StudentTable> sts { get { return studentControl?.students; } }
-        public Form1() {
+        public MainForm() {
             InitializeComponent();
 
             seatControl = new SeatControl();
@@ -24,6 +24,11 @@ namespace TeacherSeatSetter {
         private void StudentControllClick(object sender, EventArgs e) {
             contentPanel.Controls.Clear();
             contentPanel.Controls.Add(studentControl);
+        }
+
+        private void btnSeatOnClicked(object sender, EventArgs e) {
+            contentPanel.Controls.Clear();
+            contentPanel.Controls.Add(seatControl);
         }
     }
 }

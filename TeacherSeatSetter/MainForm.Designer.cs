@@ -26,8 +26,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.contentPanel = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.metroButton3 = new MetroFramework.Controls.MetroButton();
-            this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.btnShowFinalManage = new MetroFramework.Controls.MetroButton();
+            this.btnStudentManage = new MetroFramework.Controls.MetroButton();
             this.btnSeatManage = new MetroFramework.Controls.MetroButton();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -53,8 +53,8 @@
             // metroPanel1
             // 
             this.metroPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.metroPanel1.Controls.Add(this.metroButton3);
-            this.metroPanel1.Controls.Add(this.metroButton2);
+            this.metroPanel1.Controls.Add(this.btnShowFinalManage);
+            this.metroPanel1.Controls.Add(this.btnStudentManage);
             this.metroPanel1.Controls.Add(this.btnSeatManage);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
             this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
@@ -68,24 +68,25 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // metroButton3
+            // btnShowFinalManage
             // 
-            this.metroButton3.Location = new System.Drawing.Point(33, 285);
-            this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(117, 105);
-            this.metroButton3.TabIndex = 4;
-            this.metroButton3.Text = "좌석 보기";
-            this.metroButton3.UseSelectable = true;
+            this.btnShowFinalManage.Location = new System.Drawing.Point(33, 285);
+            this.btnShowFinalManage.Name = "btnShowFinalManage";
+            this.btnShowFinalManage.Size = new System.Drawing.Size(117, 105);
+            this.btnShowFinalManage.TabIndex = 4;
+            this.btnShowFinalManage.Text = "좌석 보기";
+            this.btnShowFinalManage.UseSelectable = true;
+            this.btnShowFinalManage.Click += new System.EventHandler(this.btnShowOnClicked);
             // 
-            // metroButton2
+            // btnStudentManage
             // 
-            this.metroButton2.Location = new System.Drawing.Point(33, 168);
-            this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(117, 71);
-            this.metroButton2.TabIndex = 3;
-            this.metroButton2.Text = "학생명부 관리";
-            this.metroButton2.UseSelectable = true;
-            this.metroButton2.Click += new System.EventHandler(this.StudentControllClick);
+            this.btnStudentManage.Location = new System.Drawing.Point(33, 168);
+            this.btnStudentManage.Name = "btnStudentManage";
+            this.btnStudentManage.Size = new System.Drawing.Size(117, 71);
+            this.btnStudentManage.TabIndex = 3;
+            this.btnStudentManage.Text = "학생명부 관리";
+            this.btnStudentManage.UseSelectable = true;
+            this.btnStudentManage.Click += new System.EventHandler(this.StudentControllClick);
             // 
             // btnSeatManage
             // 
@@ -99,7 +100,7 @@
             this.btnSeatManage.UseSelectable = true;
             this.btnSeatManage.Click += new System.EventHandler(this.btnSeatOnClicked);
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,7 +111,7 @@
             this.DisplayHeader = false;
             this.Font = new System.Drawing.Font("넥슨Lv2고딕", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(20, 32, 20, 22);
             this.Resizable = false;
             this.Text = "Form1";
@@ -123,8 +124,8 @@
 
         private MetroFramework.Controls.MetroPanel contentPanel;
         private MetroFramework.Controls.MetroPanel metroPanel1;
-        private MetroFramework.Controls.MetroButton metroButton3;
-        private MetroFramework.Controls.MetroButton metroButton2;
+        private MetroFramework.Controls.MetroButton btnShowFinalManage;
+        private MetroFramework.Controls.MetroButton btnStudentManage;
         private MetroFramework.Controls.MetroButton btnSeatManage;
     }
 }

@@ -20,8 +20,8 @@ namespace TeacherSeatSetter.Objects {
         public Seat() {
             seatType = SeatType.OneSeat;
             name = string.Empty;
-            rowCount = 0;
-            columnCount = 0;
+            rowCount = 1;
+            columnCount = 1;
         }
         public Point getPosition(int index) {
             return getPosition(index % rowCount, index / rowCount);
@@ -84,6 +84,6 @@ namespace TeacherSeatSetter.Objects {
 
     }
     public enum SeatType {
-        None, OneSeat,TwoSeat,ThreeSeat,CircleSeat,
+        None=0, OneSeat = 1,TwoSeat=2,ThreeSeat=3,CircleSeat=-1,
     }
 }

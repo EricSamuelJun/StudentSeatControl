@@ -13,16 +13,19 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace TeacherSeatSetter {
     public partial class SeatControl : MetroFramework.Controls.MetroUserControl {
-        public SeatControl() {
-            InitializeComponent();
-            FormInit();
-        }
+        Size oneSeatSize = new Size(50, 50);
+        Size twoSeatSize = new Size(80, 40);
+        Size threeSeatSize = new Size(75, 25);
         public List<Seat> seats;
         public List<PictureBox> pictureBoxes;
         private Seat _selected;
         private Seat selectedSeat {
             get { return _selected; }
             set { setSeatPoints(value); _selected = value; }
+        }
+        public SeatControl() {
+            InitializeComponent();
+            FormInit(); 
         }
 
         private void setSeatPoints(Seat seat) {
@@ -49,16 +52,19 @@ namespace TeacherSeatSetter {
                 }
                 //Console.WriteLine("좌석 [{0}] 세팅 시작",i);
                 pic.Visible = true;
-                pic.SizeMode = PictureBoxSizeMode.Zoom;
+                pic.SizeMode = PictureBoxSizeMode.StretchImage;
                 switch (seat.seatType) {
                     case SeatType.OneSeat:
                         pic.Image = Properties.Resources.seat_1_noNum;
+                        pic.Size = oneSeatSize;
                         break;
                     case SeatType.TwoSeat:
                         pic.Image = Properties.Resources.seat_2_noNum;
+                        pic.Size = twoSeatSize;
                         break;
                     case SeatType.ThreeSeat:
                         pic.Image = Properties.Resources.seat_3_noNum;
+                        pic.Size = threeSeatSize;
                         break;
                     case SeatType.CircleSeat:
                         pic.Visible = false;
@@ -75,6 +81,8 @@ namespace TeacherSeatSetter {
                 PictureBox pic = pictureBoxes[i];
                 pic.Visible = false;
             }
+            
+            this.txt_People.Text = "총 인원: " + seat.Count *Convert.ToInt32(seat.seatType)+ "명";
         }
         
         private void FormInit() {
@@ -92,6 +100,13 @@ namespace TeacherSeatSetter {
             selectedSeat = null;
             renewListofItems();
             //reloadNameList();
+
+            //datagridview 추가하기
+            grd_Items.Rows.Add(1,Properties.Resources.seat_1, "좌석 1");
+            grd_Items.Rows.Add(2, Properties.Resources.seat_2, "좌석 2");
+            grd_Items.Rows.Add(3, Properties.Resources.seat_3, "좌석 3");
+
+
         }
 
         private void renewListofItems() {
@@ -159,7 +174,9 @@ namespace TeacherSeatSetter {
         }
 
         private void rowDown(object sender, EventArgs e) {
-            if (selectedSeat.rowCount <= 0)
+            if (selectedSeat == null)
+                return;
+            if (selectedSeat.rowCount <= 1)
                 return;
             Console.WriteLine("row --");
             selectedSeat.rowCount--;
@@ -167,6 +184,8 @@ namespace TeacherSeatSetter {
         }
 
         private void rowUp(object sender, EventArgs e) {
+            if (selectedSeat == null)
+                return;
             if (selectedSeat.rowCount >= 6)
                 return;
             Console.WriteLine("row ++");
@@ -175,6 +194,8 @@ namespace TeacherSeatSetter {
         }
 
         private void colUp(object sender, EventArgs e) {
+            if (selectedSeat == null)
+                return;
             if (selectedSeat.columnCount >= 6)
                 return;
             Console.WriteLine("col ++");
@@ -183,7 +204,9 @@ namespace TeacherSeatSetter {
         }
 
         private void colDown(object sender, EventArgs e) {
-            if (selectedSeat.columnCount <= 0)
+            if (selectedSeat == null)
+                return;
+            if (selectedSeat.columnCount <= 1)
                 return;
             Console.WriteLine("col --");
             selectedSeat.columnCount--;
@@ -204,6 +227,23 @@ namespace TeacherSeatSetter {
             if (seat == null)
                 return;
             Console.WriteLine("Selected Seat:[{0}], row: {1}, col: {2}, Type: {3}", seat.name, seat.rowCount,seat.columnCount,seat.seatType.ToString());
+        }
+
+        private void grd_Items_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            int row = e.RowIndex;
+            if (selectedSeat == null)
+                return;
+            if (row == 0) {
+                selectedSeat.seatType = SeatType.OneSeat;
+            }
+            if (row == 1) {
+                selectedSeat.seatType = SeatType.TwoSeat;
+            }
+            if (row == 2) {
+                selectedSeat.seatType = SeatType.ThreeSeat;
+            }
+            setSeatPoints(selectedSeat);
+
         }
     }
 }

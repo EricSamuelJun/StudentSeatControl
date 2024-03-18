@@ -28,10 +28,11 @@ namespace TeacherSeatSetter.Forms {
         private void InitializeComponent() {
             this.lv_Classes = new MetroFramework.Controls.MetroListView();
             this.lv_Seats = new MetroFramework.Controls.MetroListView();
-            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.contentPanel = new MetroFramework.Controls.MetroPanel();
             this.btn_Capture = new MetroFramework.Controls.MetroButton();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.metroPanel1.SuspendLayout();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.contentPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lv_Classes
@@ -41,11 +42,10 @@ namespace TeacherSeatSetter.Forms {
             this.lv_Classes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lv_Classes.HideSelection = false;
             this.lv_Classes.Location = new System.Drawing.Point(0, 0);
-            this.lv_Classes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lv_Classes.MultiSelect = false;
             this.lv_Classes.Name = "lv_Classes";
             this.lv_Classes.OwnerDraw = true;
-            this.lv_Classes.Size = new System.Drawing.Size(150, 349);
+            this.lv_Classes.Size = new System.Drawing.Size(132, 280);
             this.lv_Classes.TabIndex = 0;
             this.lv_Classes.TabStop = false;
             this.lv_Classes.UseCompatibleStateImageBehavior = false;
@@ -59,12 +59,11 @@ namespace TeacherSeatSetter.Forms {
             this.lv_Seats.FullRowSelect = true;
             this.lv_Seats.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lv_Seats.HideSelection = false;
-            this.lv_Seats.Location = new System.Drawing.Point(0, 410);
-            this.lv_Seats.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lv_Seats.Location = new System.Drawing.Point(0, 328);
             this.lv_Seats.MultiSelect = false;
             this.lv_Seats.Name = "lv_Seats";
             this.lv_Seats.OwnerDraw = true;
-            this.lv_Seats.Size = new System.Drawing.Size(150, 349);
+            this.lv_Seats.Size = new System.Drawing.Size(132, 280);
             this.lv_Seats.TabIndex = 1;
             this.lv_Seats.TabStop = false;
             this.lv_Seats.UseCompatibleStateImageBehavior = false;
@@ -72,20 +71,19 @@ namespace TeacherSeatSetter.Forms {
             this.lv_Seats.View = System.Windows.Forms.View.List;
             this.lv_Seats.SelectedIndexChanged += new System.EventHandler(this.whenSeatListIndexChanged);
             // 
-            // metroPanel1
+            // contentPanel
             // 
-            this.metroPanel1.Controls.Add(this.panel1);
-            this.metroPanel1.HorizontalScrollbarBarColor = true;
-            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.HorizontalScrollbarSize = 12;
-            this.metroPanel1.Location = new System.Drawing.Point(150, 1);
-            this.metroPanel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(759, 759);
-            this.metroPanel1.TabIndex = 2;
-            this.metroPanel1.VerticalScrollbarBarColor = true;
-            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel1.VerticalScrollbarSize = 11;
+            this.contentPanel.Controls.Add(this.pictureBox1);
+            this.contentPanel.HorizontalScrollbarBarColor = true;
+            this.contentPanel.HorizontalScrollbarHighlightOnWheel = false;
+            this.contentPanel.HorizontalScrollbarSize = 10;
+            this.contentPanel.Location = new System.Drawing.Point(131, 1);
+            this.contentPanel.Name = "contentPanel";
+            this.contentPanel.Size = new System.Drawing.Size(664, 607);
+            this.contentPanel.TabIndex = 2;
+            this.contentPanel.VerticalScrollbarBarColor = true;
+            this.contentPanel.VerticalScrollbarHighlightOnWheel = false;
+            this.contentPanel.VerticalScrollbarSize = 10;
             // 
             // btn_Capture
             // 
@@ -94,10 +92,10 @@ namespace TeacherSeatSetter.Forms {
             this.btn_Capture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Capture.FontSize = MetroFramework.MetroButtonSize.Tall;
             this.btn_Capture.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_Capture.Location = new System.Drawing.Point(0, 350);
+            this.btn_Capture.Location = new System.Drawing.Point(0, 280);
             this.btn_Capture.Margin = new System.Windows.Forms.Padding(0);
             this.btn_Capture.Name = "btn_Capture";
-            this.btn_Capture.Size = new System.Drawing.Size(151, 60);
+            this.btn_Capture.Size = new System.Drawing.Size(132, 48);
             this.btn_Capture.TabIndex = 3;
             this.btn_Capture.TabStop = false;
             this.btn_Capture.Text = "캡쳐하기";
@@ -105,26 +103,28 @@ namespace TeacherSeatSetter.Forms {
             this.btn_Capture.UseSelectable = true;
             this.btn_Capture.Click += new System.EventHandler(this.btn_Capture_Click);
             // 
-            // panel1
+            // pictureBox1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(96, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(559, 524);
-            this.panel1.TabIndex = 2;
+            this.pictureBox1.Image = global::TeacherSeatSetter.Properties.Resources.seat_1_noNum;
+            this.pictureBox1.Location = new System.Drawing.Point(142, 471);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // ShowFinalControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btn_Capture);
-            this.Controls.Add(this.metroPanel1);
+            this.Controls.Add(this.contentPanel);
             this.Controls.Add(this.lv_Seats);
             this.Controls.Add(this.lv_Classes);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "ShowFinalControl";
-            this.Size = new System.Drawing.Size(909, 760);
-            this.metroPanel1.ResumeLayout(false);
+            this.Size = new System.Drawing.Size(795, 608);
+            this.contentPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -133,8 +133,8 @@ namespace TeacherSeatSetter.Forms {
 
         private MetroFramework.Controls.MetroListView lv_Classes;
         private MetroFramework.Controls.MetroListView lv_Seats;
-        private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroPanel contentPanel;
         private MetroButton btn_Capture;
-        private Panel panel1;
+        private PictureBox pictureBox1;
     }
 }

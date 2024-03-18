@@ -61,6 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Chair.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\Chair.Designer.cs">
+      <DependentUpon>Chair.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ShowFinalControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -79,6 +85,7 @@
     <Compile Include="Forms\WaitModal.Designer.cs">
       <DependentUpon>WaitModal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Objects\iChair.cs" />
     <Compile Include="Objects\FileManagement.cs" />
     <Compile Include="Objects\Seat.cs" />
     <Compile Include="Program.cs" />
@@ -96,6 +103,9 @@
       <DependentUpon>StudentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Objects\StudentTable.cs" />
+    <EmbeddedResource Include="Forms\Chair.resx">
+      <DependentUpon>Chair.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\ShowFinalControl.resx">
       <DependentUpon>ShowFinalControl.cs</DependentUpon>
     </EmbeddedResource>

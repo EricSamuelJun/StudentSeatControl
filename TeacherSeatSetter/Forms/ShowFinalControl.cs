@@ -27,8 +27,8 @@ namespace TeacherSeatSetter.Forms {
             panelgraphic = panel1.CreateGraphics();
             panelgraphic.Clear(Color.White);
             //panelgraphic.DrawImage(Properties.Resources.seat_1, new Point(200,400));
-            panelgraphic.DrawString("김아아", new System.Drawing.Font("넥슨Lv2고딕 Bold", 14F), new System.Drawing.SolidBrush(System.Drawing.Color.Black), new PointF(200, 400));
-            //panelgraphic.DrawRectangle(new System.Drawing.Pen(Color.Black), new Rectangle(0, 0, 200, 300));
+            //panelgraphic.DrawString("김아아", new System.Drawing.Font("넥슨Lv2고딕 Bold", 14F), new System.Drawing.SolidBrush(System.Drawing.Color.Black), new PointF(200, 400));
+            panelgraphic.DrawRectangle(new System.Drawing.Pen(Color.Black), new Rectangle(0, 0, 200, 300));
             panelgraphic.Dispose();
         }
         public void OnFormCalled(List<StudentTable> stutable, List<Seat> seats) {
@@ -56,13 +56,31 @@ namespace TeacherSeatSetter.Forms {
         }
 
         private void whenClassesListIndexChanged(object sender, EventArgs e) {
-
+            if (lv_Classes.SelectedItems.Count <= 0)
+                return;
+            selectedStudent = lv_Classes.SelectedItems[0].Tag as StudentTable;
+            if (selectedStudent == null)
+                return;
+            DrawScreen();
         }
 
         private void whenSeatListIndexChanged(object sender, EventArgs e) {
-
+            if (lv_Seats.SelectedItems.Count <= 0)
+                return;
+            selectedSeat = lv_Seats.SelectedItems[0].Tag as Seat;
+            if (selectedSeat == null)
+                return;
+            DrawScreen();
         }
         private void DrawScreen() {
+            if (selectedSeat == null ||  selectedStudent == null ) {
+                return;
+            }
+            if(selectedSeat.Count == 0 || selectedStudent.dataTable.Rows.Count == 0) {
+                MessageBox.Show("데이터가 잘못되었습니다.");
+                return;
+            }
+            
 
         }
     }

@@ -17,6 +17,7 @@ namespace TeacherSeatSetter.Forms {
         private StudentTable selectedStudent;
         private Seat selectedSeat;
         private Graphics panelgraphic;
+        private List<Chair> chairs;
 
         public ShowFinalControl() {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace TeacherSeatSetter.Forms {
             this.chair1.LabelText = "쯔위";
             this.chair2.LabelText = "고세구";
             this.chair3.LabelText = "냥뇽녕냥";
+            
         }
         public void OnFormCalled(List<StudentTable> stutable, List<Seat> seats) {
             this.students = stutable;

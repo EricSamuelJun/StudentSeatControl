@@ -29,11 +29,11 @@ namespace TeacherSeatSetter {
             try {
                 students = (data == null  ? new List<StudentTable>() : (Newtonsoft.Json.JsonConvert.DeserializeObject<List<StudentTable>>((string)data)));
             }catch(Exception ex) {
-                Console.WriteLine("Exception: "+ex.Message+"\n"+ex.StackTrace);
+                System.Diagnostics.Debug.WriteLine("Exception: "+ex.Message+"\n"+ex.StackTrace);
                 students = new List<StudentTable>();
             }
 
-            Console.WriteLine("class Count: "+students.Count);
+            System.Diagnostics.Debug.WriteLine("class Count: "+students.Count);
 
             grdStudentList.AutoGenerateColumns = false;
             reloadNameList();
@@ -41,7 +41,7 @@ namespace TeacherSeatSetter {
         public void reloadNameList() {
             comboClass.Items.Clear();   
             foreach(StudentTable student in students) {
-                Console.WriteLine("className: "+student.cName);
+                System.Diagnostics.Debug.WriteLine("className: "+student.cName);
                 comboClass.Items.Add(student);
             }
 
@@ -63,6 +63,7 @@ namespace TeacherSeatSetter {
                 sfd.OverwritePrompt = true;
                 sfd.Filter = "엑셀 파일 (*.xlsx)|*.xlsx";
                 sfd.DefaultExt = "xlsx";
+                sfd.FileName = "학교 반 엑셀 샘플.xlsx";
                 if (sfd.ShowDialog() == DialogResult.OK) {
                     fileName = sfd.FileName;
                     //filePath = sfd.file
@@ -149,7 +150,7 @@ namespace TeacherSeatSetter {
                     catch(Exception ex) {
                         isError = true;
                         errorCnt++;
-                        Console.WriteLine("Error on code StudentControl.cs line 145, Excel Row: "+row+"\n"+ex.Message + "\n\n\n"+ex.StackTrace+ "\n\n\n");
+                        System.Diagnostics.Debug.WriteLine("Error on code StudentControl.cs line 145, Excel Row: "+row+"\n"+ex.Message + "\n\n\n"+ex.StackTrace+ "\n\n\n");
                     }
                     
                 }
@@ -176,7 +177,7 @@ namespace TeacherSeatSetter {
                 return;
             waitmodal = new WaitModal();
             
-            Console.WriteLine("wait modal on");
+            System.Diagnostics.Debug.WriteLine("wait modal on");
             if (waitmodal.ContainsFocus) {
                 Form.ActiveForm.Opacity = 0.50;
                 waitmodal.Show();
@@ -187,7 +188,7 @@ namespace TeacherSeatSetter {
             //    return;
             if (waitmodal == null)
                 return;
-            Console.WriteLine("wait modal off");
+            System.Diagnostics.Debug.WriteLine("wait modal off");
             waitmodal.Close();
             if (waitmodal.ContainsFocus) {
                 Form.ActiveForm.Opacity = 1;

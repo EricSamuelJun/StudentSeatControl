@@ -1,4 +1,6 @@
-﻿namespace TeacherSeatSetter {
+﻿using System.Windows.Forms;
+
+namespace TeacherSeatSetter {
     partial class StudentControl {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -35,6 +37,8 @@
             this.btnExcelDownload = new MetroFramework.Controls.MetroButton();
             this.btnExcelUpload = new MetroFramework.Controls.MetroButton();
             this.btnDelete = new MetroFramework.Controls.MetroButton();
+            this.lbExcelSample = new System.Windows.Forms.Label();
+            this.lbExcelupload = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.grdStudentList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,7 +147,7 @@
             // 
             this.btnExcelDownload.BackgroundImage = global::TeacherSeatSetter.Properties.Resources.excelDownloadIcon;
             this.btnExcelDownload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExcelDownload.Location = new System.Drawing.Point(541, 120);
+            this.btnExcelDownload.Location = new System.Drawing.Point(432, 94);
             this.btnExcelDownload.Name = "btnExcelDownload";
             this.btnExcelDownload.Size = new System.Drawing.Size(128, 128);
             this.btnExcelDownload.TabIndex = 2;
@@ -154,7 +158,7 @@
             // 
             this.btnExcelUpload.BackgroundImage = global::TeacherSeatSetter.Properties.Resources.excelUploadIcon;
             this.btnExcelUpload.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnExcelUpload.Location = new System.Drawing.Point(541, 381);
+            this.btnExcelUpload.Location = new System.Drawing.Point(432, 374);
             this.btnExcelUpload.Name = "btnExcelUpload";
             this.btnExcelUpload.Size = new System.Drawing.Size(128, 128);
             this.btnExcelUpload.TabIndex = 3;
@@ -174,10 +178,35 @@
             this.btnDelete.UseSelectable = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // lbExcelSample
+            // 
+            this.lbExcelSample.AutoSize = true;
+            this.lbExcelSample.BackColor = System.Drawing.Color.Transparent;
+            this.lbExcelSample.Font = new System.Drawing.Font("넥슨Lv2고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbExcelSample.Location = new System.Drawing.Point(442, 242);
+            this.lbExcelSample.Name = "lbExcelSample";
+            this.lbExcelSample.Size = new System.Drawing.Size(112, 15);
+            this.lbExcelSample.TabIndex = 5;
+            this.lbExcelSample.Text = "액셀 샘플 다운로드";
+            // 
+            // lbExcelupload
+            // 
+            this.lbExcelupload.AutoSize = true;
+            this.lbExcelupload.BackColor = System.Drawing.Color.Transparent;
+            this.lbExcelupload.Font = new System.Drawing.Font("넥슨Lv2고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.lbExcelupload.Location = new System.Drawing.Point(462, 521);
+            this.lbExcelupload.Name = "lbExcelupload";
+            this.lbExcelupload.Size = new System.Drawing.Size(69, 12);
+            this.lbExcelupload.TabIndex = 6;
+            this.lbExcelupload.Text = "액셀 업로드";
+            this.lbExcelupload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // StudentControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lbExcelupload);
+            this.Controls.Add(this.lbExcelSample);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnExcelUpload);
             this.Controls.Add(this.btnExcelDownload);
@@ -185,9 +214,10 @@
             this.Controls.Add(this.grdStudentList);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "StudentControl";
-            this.Size = new System.Drawing.Size(795, 660);
+            this.Size = new System.Drawing.Size(583, 660);
             ((System.ComponentModel.ISupportInitialize)(this.grdStudentList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -202,5 +232,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn className;
         private System.Windows.Forms.DataGridViewTextBoxColumn seatNumber;
+        private Label lbExcelSample;
+        private Label lbExcelupload;
     }
 }

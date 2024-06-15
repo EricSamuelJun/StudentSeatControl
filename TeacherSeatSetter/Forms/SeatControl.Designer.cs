@@ -28,6 +28,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.list_ItemListView = new MetroFramework.Controls.MetroListView();
             this.seatPanel = new MetroFramework.Controls.MetroPanel();
+            this.txt_People = new MetroFramework.Controls.MetroLabel();
             this.btn_ColPositive = new MetroFramework.Controls.MetroButton();
             this.btn_ColNegative = new MetroFramework.Controls.MetroButton();
             this.btn_rowPositive = new MetroFramework.Controls.MetroButton();
@@ -41,7 +42,6 @@
             this.index = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.image = new System.Windows.Forms.DataGridViewImageColumn();
             this.text = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txt_People = new MetroFramework.Controls.MetroLabel();
             this.seatPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Items)).BeginInit();
             this.SuspendLayout();
@@ -84,6 +84,17 @@
             this.seatPanel.VerticalScrollbarBarColor = true;
             this.seatPanel.VerticalScrollbarHighlightOnWheel = false;
             this.seatPanel.VerticalScrollbarSize = 10;
+            // 
+            // txt_People
+            // 
+            this.txt_People.AutoSize = true;
+            this.txt_People.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.txt_People.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.txt_People.Location = new System.Drawing.Point(12, 46);
+            this.txt_People.Name = "txt_People";
+            this.txt_People.Size = new System.Drawing.Size(115, 25);
+            this.txt_People.TabIndex = 15;
+            this.txt_People.Text = "총 인원: n 명";
             // 
             // btn_ColPositive
             // 
@@ -260,6 +271,7 @@
             this.grd_Items.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grd_Items.Size = new System.Drawing.Size(194, 196);
             this.grd_Items.TabIndex = 6;
+            this.grd_Items.Visible = false;
             this.grd_Items.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grd_Items_CellDoubleClick);
             // 
             // index
@@ -281,17 +293,6 @@
             this.text.HeaderText = "좌석";
             this.text.Name = "text";
             this.text.ReadOnly = true;
-            // 
-            // txt_People
-            // 
-            this.txt_People.AutoSize = true;
-            this.txt_People.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.txt_People.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.txt_People.Location = new System.Drawing.Point(12, 46);
-            this.txt_People.Name = "txt_People";
-            this.txt_People.Size = new System.Drawing.Size(115, 25);
-            this.txt_People.TabIndex = 15;
-            this.txt_People.Text = "총 인원: n 명";
             // 
             // SeatControl
             // 

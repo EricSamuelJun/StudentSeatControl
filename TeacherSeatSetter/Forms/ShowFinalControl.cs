@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,12 +25,9 @@ namespace TeacherSeatSetter.Forms {
         public void FormInit() {
             selectedSeat = null;
             selectedStudent = null;
-            panelgraphic = panel1.CreateGraphics();
-            panelgraphic.Clear(Color.White);
-            //panelgraphic.DrawImage(Properties.Resources.seat_1, new Point(200,400));
-            //panelgraphic.DrawString("김아아", new System.Drawing.Font("넥슨Lv2고딕 Bold", 14F), new System.Drawing.SolidBrush(System.Drawing.Color.Black), new PointF(200, 400));
-            panelgraphic.DrawRectangle(new System.Drawing.Pen(Color.Black), new Rectangle(0, 0, 200, 300));
-            panelgraphic.Dispose();
+            this.chair1.LabelText = "쯔위";
+            this.chair2.LabelText = "고세구";
+            this.chair3.LabelText = "냥뇽녕냥";
         }
         public void OnFormCalled(List<StudentTable> stutable, List<Seat> seats) {
             this.students = stutable;
@@ -52,7 +50,30 @@ namespace TeacherSeatSetter.Forms {
         }
 
         private void btn_Capture_Click(object sender, EventArgs e) {
+            CaptureAndSaveLayout();
+        }
 
+        private void CaptureAndSaveLayout() {
+            if (selectedSeat == null || selectedStudent == null) {
+                MessageBox.Show("반과 교실을 선택하여 주세요!");
+                return;
+            }
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog()) {
+                saveFileDialog.Filter = "JPG files (*.jpg)|*.jpg";
+                saveFileDialog.DefaultExt = "jpg";
+                DateTime now = DateTime.Now;
+                
+                string filename = now.Year.ToString()+"년 "+((now.Month >= 8 || now.Month == 1) ? "2" : "1")+"학기 "+selectedStudent.ToString() + " " + selectedSeat.ToString() + "교실 반 배정표";
+                saveFileDialog.FileName = filename + ".jpg";
+                saveFileDialog.Title = "[파일 저장] "+filename + " 저장";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+                    using (Bitmap bmp = new Bitmap(contentPanel.Width, contentPanel.Height)) {
+                        contentPanel.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+                        bmp.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
+                        MessageBox.Show(saveFileDialog.FileName+"로 저장하였습니다.");
+                    }
+                }
+            }
         }
 
         private void whenClassesListIndexChanged(object sender, EventArgs e) {
@@ -80,7 +101,9 @@ namespace TeacherSeatSetter.Forms {
                 MessageBox.Show("데이터가 잘못되었습니다.");
                 return;
             }
-            
+            int row = selectedSeat.rowCount;
+            int column = selectedSeat.columnCount;
+
 
         }
     }

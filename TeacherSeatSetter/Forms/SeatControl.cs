@@ -29,7 +29,7 @@ namespace TeacherSeatSetter {
         }
 
         private void setSeatPoints(Seat seat) {
-            Console.WriteLine("좌석 세팅 시작");
+            System.Diagnostics.Debug.WriteLine("좌석 세팅 시작");
             debugSeatVal(seat);
             if (seat == null) {
                 foreach(PictureBox pictureBox in pictureBoxes) {
@@ -50,7 +50,7 @@ namespace TeacherSeatSetter {
                     seatPanel.Controls.Add(pic);
                     pictureBoxes.Insert(i, pic);
                 }
-                //Console.WriteLine("좌석 [{0}] 세팅 시작",i);
+                //System.Diagnostics.Debug.WriteLine("좌석 [{0}] 세팅 시작",i);
                 pic.Visible = true;
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
                 switch (seat.seatType) {
@@ -91,11 +91,11 @@ namespace TeacherSeatSetter {
             try {
                 seats = (data == null ? new List<Seat>() : (Newtonsoft.Json.JsonConvert.DeserializeObject<List<Seat>>((string)data)));
             } catch (Exception ex) {
-                Console.WriteLine("Exception: " + ex.Message + "\n" + ex.StackTrace);
+                System.Diagnostics.Debug.WriteLine("Exception: " + ex.Message + "\n" + ex.StackTrace);
                 seats = new List<Seat>();
             }
 
-            Console.WriteLine("seats Count: " + seats.Count);
+            System.Diagnostics.Debug.WriteLine("seats Count: " + seats.Count);
             pictureBoxes = new List<PictureBox>();
             selectedSeat = null;
             renewListofItems();
@@ -123,7 +123,7 @@ namespace TeacherSeatSetter {
             Seat newSeat = new Seat();
             tb_SeatName.Text = string.Empty;
             selectedSeat = newSeat;
-            Console.WriteLine("새로 만듬");
+            System.Diagnostics.Debug.WriteLine("새로 만듬");
             setSeatPoints(newSeat);
         }
 
@@ -132,7 +132,7 @@ namespace TeacherSeatSetter {
             if(selectedSeat == null) {
                 return;
             }
-            Console.WriteLine("삭제 구동");
+            System.Diagnostics.Debug.WriteLine("삭제 구동");
             seats.Remove(selectedSeat);
             selectedSeat = null;
             renewListofItems();
@@ -146,17 +146,17 @@ namespace TeacherSeatSetter {
                 MessageBox.Show("선택된 자석이 없습니다!\n저장을 하지 못했습니다!");
                 return;
             }
-            Console.WriteLine("저장 시작");
+            System.Diagnostics.Debug.WriteLine("저장 시작");
             //새로만든 좌석이거나, 수정된 좌석이거나
             //새로만든 좌석이다
             if (!seats.Contains(selectedSeat)) {
-                Console.WriteLine("신규 좌석");
+                System.Diagnostics.Debug.WriteLine("신규 좌석");
                 selectedSeat.name = tb_SeatName.Text;
                 seats.Add(selectedSeat);
             }
             //수정된 좌석은 어차피 자동 체인지인데 뭐... 이름만 바꾸지
             else {
-                Console.WriteLine("수정 좌석");
+                System.Diagnostics.Debug.WriteLine("수정 좌석");
                 selectedSeat.name = tb_SeatName.Text;
             }
 
@@ -168,7 +168,7 @@ namespace TeacherSeatSetter {
             if (seats.Count == 0) {
                 //return;
             }
-            Console.WriteLine("DEBUG: " + seats.Count);
+            System.Diagnostics.Debug.WriteLine("DEBUG: " + seats.Count);
             FileManagement.manager.SaveFile("seats", seats, true);
             base.OnHandleDestroyed(e);
         }
@@ -178,7 +178,7 @@ namespace TeacherSeatSetter {
                 return;
             if (selectedSeat.rowCount <= 1)
                 return;
-            Console.WriteLine("row --");
+            System.Diagnostics.Debug.WriteLine("row --");
             selectedSeat.rowCount--;
             setSeatPoints(selectedSeat);
         }
@@ -188,7 +188,7 @@ namespace TeacherSeatSetter {
                 return;
             if (selectedSeat.rowCount >= 6)
                 return;
-            Console.WriteLine("row ++");
+            System.Diagnostics.Debug.WriteLine("row ++");
             selectedSeat.rowCount++;
             setSeatPoints(selectedSeat);
         }
@@ -198,7 +198,7 @@ namespace TeacherSeatSetter {
                 return;
             if (selectedSeat.columnCount >= 6)
                 return;
-            Console.WriteLine("col ++");
+            System.Diagnostics.Debug.WriteLine("col ++");
             selectedSeat.columnCount++;
             setSeatPoints(selectedSeat);
         }
@@ -208,7 +208,7 @@ namespace TeacherSeatSetter {
                 return;
             if (selectedSeat.columnCount <= 1)
                 return;
-            Console.WriteLine("col --");
+            System.Diagnostics.Debug.WriteLine("col --");
             selectedSeat.columnCount--;
             setSeatPoints(selectedSeat);
         }
@@ -226,7 +226,7 @@ namespace TeacherSeatSetter {
         private void debugSeatVal(Seat seat) {
             if (seat == null)
                 return;
-            Console.WriteLine("Selected Seat:[{0}], row: {1}, col: {2}, Type: {3}", seat.name, seat.rowCount,seat.columnCount,seat.seatType.ToString());
+            System.Diagnostics.Debug.WriteLine("Selected Seat:[{0}], row: {1}, col: {2}, Type: {3}", seat.name, seat.rowCount,seat.columnCount,seat.seatType.ToString());
         }
 
         private void grd_Items_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {

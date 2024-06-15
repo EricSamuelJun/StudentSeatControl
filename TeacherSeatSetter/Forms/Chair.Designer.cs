@@ -1,4 +1,6 @@
-﻿namespace TeacherSeatSetter.Forms {
+﻿using System.Drawing;
+
+namespace TeacherSeatSetter.Forms {
     partial class Chair {
         /// <summary> 
         /// 필수 디자이너 변수입니다.
@@ -29,7 +31,7 @@
             // label
             // 
             this.label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label.Font = new System.Drawing.Font("넥슨Lv2고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label.Font = new System.Drawing.Font("넥슨Lv2고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label.Location = new System.Drawing.Point(0, 0);
             this.label.Name = "label";
             this.label.Size = new System.Drawing.Size(50, 50);
@@ -45,7 +47,8 @@
             this.Name = "Chair";
             this.Size = new System.Drawing.Size(50, 50);
             this.ResumeLayout(false);
-
+            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#EE7674");
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
         }
 
         #endregion

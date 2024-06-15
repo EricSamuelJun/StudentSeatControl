@@ -29,9 +29,9 @@ namespace TeacherSeatSetter {
         }
 
         public void PrintTypeForTest() {
-            Console.WriteLine("");
+            System.Diagnostics.Debug.WriteLine("");
             foreach(System.Data.DataColumn col in dataTable.Columns) {
-                Console.WriteLine(""+col.ColumnName+" type is "+col.DataType.ToString());
+                System.Diagnostics.Debug.WriteLine(""+col.ColumnName+" type is "+col.DataType.ToString());
             }
         }
         public void AddRow(System.Data.DataRow dr) {

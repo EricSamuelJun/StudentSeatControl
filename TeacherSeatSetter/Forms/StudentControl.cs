@@ -15,32 +15,61 @@ using TeacherSeatSetter.Objects;
 
 namespace TeacherSeatSetter {
     public partial class StudentControl : MetroFramework.Controls.MetroUserControl {
-        public List<StudentTable> students = null;
+        public List<StudentTable> StudentBans = null;
         WaitModal waitmodal;
         bool isStop = false;
+        public int count { get => StudentBans == null ? 0 : StudentBans.Count; }
         public StudentControl() {
             InitializeComponent();
             //
             FormInit();
         }
         public void FormInit() {
+
+            //그리드 설정
+            grdStudentList.AutoGenerateColumns = false;
+            grdStudentList.Columns.Clear();
+            grdStudentList.Columns.Add(new DataGridViewColumn {
+                DataPropertyName = "schoolNumber",
+                HeaderText = "학번",
+                CellTemplate = new DataGridViewTextBoxCell()
+            });
+            grdStudentList.Columns.Add(new DataGridViewColumn {
+                DataPropertyName = "name",
+                HeaderText = "학생이름",
+                CellTemplate = new DataGridViewTextBoxCell()
+            });
+            grdStudentList.Columns.Add(new DataGridViewColumn {
+                DataPropertyName = "className",
+                HeaderText = "반 이름",
+                CellTemplate = new DataGridViewTextBoxCell()
+            });
+            grdStudentList.Columns.Add(new DataGridViewColumn {
+                DataPropertyName = "seatNumber",
+                HeaderText = "좌석번호",
+                Visible = false,
+                CellTemplate = new DataGridViewTextBoxCell()
+            });
+            grdStudentList.AllowUserToAddRows = false;
+
+
             //데이터 로드
             var data =  FileManagement.manager.LoadFile("students",true);
             try {
-                students = (data == null  ? new List<StudentTable>() : (Newtonsoft.Json.JsonConvert.DeserializeObject<List<StudentTable>>((string)data)));
+                StudentBans = (data == null  ? new List<StudentTable>() : (Newtonsoft.Json.JsonConvert.DeserializeObject<List<StudentTable>>((string)data)));
             }catch(Exception ex) {
                 System.Diagnostics.Debug.WriteLine("Exception: "+ex.Message+"\n"+ex.StackTrace);
-                students = new List<StudentTable>();
+                StudentBans = new List<StudentTable>();
             }
 
-            System.Diagnostics.Debug.WriteLine("class Count: "+students.Count);
+            System.Diagnostics.Debug.WriteLine("class Count: "+StudentBans.Count);
 
             grdStudentList.AutoGenerateColumns = false;
             reloadNameList();
         }
         public void reloadNameList() {
             comboClass.Items.Clear();   
-            foreach(StudentTable student in students) {
+            foreach(StudentTable student in StudentBans) {
                 System.Diagnostics.Debug.WriteLine("className: "+student.cName);
                 comboClass.Items.Add(student);
             }
@@ -156,7 +185,7 @@ namespace TeacherSeatSetter {
                 }
                 ModalEnd();
                 MessageBox.Show(String.Format("총 {0}개의 행을 불러왔습니다.\n에러 행은 {1}개 발생했습니다.", count, errorCnt));
-                students.Add(stuTable);
+                StudentBans.Add(stuTable);
 
             } catch(Exception ex) {
                 MessageBox.Show(ex.Message, "Error");
@@ -197,20 +226,30 @@ namespace TeacherSeatSetter {
         //해당 combobox 삭제
         private void btnDelete_Click(object sender, EventArgs e) {
             StudentTable st = comboClass.SelectedItem as StudentTable;
-            students.Remove(st);
+            StudentBans.Remove(st);
             reloadNameList();
         }
         //콤보박스 새로고침
         private void comboClass_SelectionChangeCommitted(object sender, EventArgs e) {
             //바뀌면 grd 바꿔놓기
-            this.grdStudentList.DataSource = (comboClass.SelectedItem as StudentTable).dataTable;
+            //this.grdStudentList.DataSource = (comboClass.SelectedItem as StudentTable).students;
+            System.Diagnostics.Debug.WriteLine("Value " + (comboClass.SelectedItem as StudentTable).students.ToString());
+            this.grdStudentList.DataSource = (comboClass.SelectedItem as StudentTable).students;
         }
         protected override void OnHandleDestroyed(EventArgs e) {
-            if (students.Count == 0) {
+            if (StudentBans.Count == 0) {
                 //return;
             }
-            FileManagement.manager.SaveFile("students", students, true);
+            FileManagement.manager.SaveFile("students", StudentBans, true);
             base.OnHandleDestroyed(e);
+        }
+
+        private void button1_Click(object sender, EventArgs e) {
+            if (comboClass.SelectedItem == null)
+                return;
+            foreach (Student stu in (comboClass.SelectedItem as StudentTable).students) {
+                System.Diagnostics.Debug.WriteLine("{0} {3} {1} {2}", stu.name, stu.className, stu.seatNumber, stu.schoolNumber);
+            }
         }
     }
 }

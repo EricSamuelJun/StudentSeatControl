@@ -16,7 +16,7 @@ namespace TeacherSeatSetter {
         internal SeatControl seatControl;
         internal StudentControl studentControl;
         internal ShowFinalControl showFinalControl;
-        public List<StudentTable> students { get { return studentControl?.students; } }
+        public List<StudentTable> students { get { return studentControl?.StudentBans; } }
         public List<Seat> seats { get { return seatControl?.seats; } }
         private readonly int DEFAULT_MAIN_ADD_SIZE = 230;
         private readonly int DEFAULT_PANEL_WIDTH = 620;

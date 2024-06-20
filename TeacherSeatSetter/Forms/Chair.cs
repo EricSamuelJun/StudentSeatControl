@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace TeacherSeatSetter.Forms {
     public partial class Chair : UserControl {
+        Student student;
         /*
         public Chair() {
             InitializeComponent();
@@ -32,6 +33,15 @@ namespace TeacherSeatSetter.Forms {
             label.MouseUp += Label_MouseUp;
             this.label.Text = name;
         }
+        public Chair(Student student) : this(student.name) {
+            this.student = student;
+        }
+
+        public void LinkStudent(Student student) {
+            this.student = student;
+            this.label.Text = student?.name;
+        }
+
         private Point dragStartPoint;
         private Bitmap dragBitmap;
 
@@ -88,10 +98,14 @@ namespace TeacherSeatSetter.Forms {
                         var targetRect = new Rectangle(targetLabel.Location, targetLabel.Size);
 
                         if (targetRect.Contains(PointToParent(new Point(e.X, e.Y)))) {
-                            // Swap text
+                            // Swap Student
+                            /*
                             string temp = this.LabelText;
                             this.LabelText = targetLabel.LabelText;
-                            targetLabel.LabelText = temp;
+                            targetLabel.LabelText = temp;*/
+                            Student temp = this.student;
+                            this.LinkStudent(targetLabel.student);
+                            targetLabel.LinkStudent(temp);
                             break;
                         }
                     }

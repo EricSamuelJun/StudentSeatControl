@@ -99,32 +99,32 @@ namespace TeacherSeatSetter {
             this.grdStudentList.Size = new System.Drawing.Size(380, 615);
             this.grdStudentList.TabIndex = 1;
             // 
-            // number
+            // number1
             // 
-            this.number.DataPropertyName = "number";
+            this.number.DataPropertyName = "number1";
             this.number.HeaderText = "학번";
-            this.number.Name = "number";
+            this.number.Name = "number1";
             this.number.ReadOnly = true;
             // 
-            // name
+            // name1
             // 
-            this.name.DataPropertyName = "name";
+            this.name.DataPropertyName = "name1";
             this.name.HeaderText = "학생이름";
-            this.name.Name = "name";
+            this.name.Name = "name1";
             this.name.ReadOnly = true;
             // 
-            // className
+            // className1
             // 
-            this.className.DataPropertyName = "className";
+            this.className.DataPropertyName = "className1";
             this.className.HeaderText = "반";
-            this.className.Name = "className";
+            this.className.Name = "className1";
             this.className.ReadOnly = true;
             // 
-            // seatNumber
+            // seatNumber1
             // 
-            this.seatNumber.DataPropertyName = "seatNumber";
+            this.seatNumber.DataPropertyName = "seatNumber1";
             this.seatNumber.HeaderText = "좌석번호";
-            this.seatNumber.Name = "seatNumber";
+            this.seatNumber.Name = "seatNumber1";
             this.seatNumber.ReadOnly = true;
             this.seatNumber.Visible = false;
             // 
@@ -185,7 +185,7 @@ namespace TeacherSeatSetter {
             this.lbExcelSample.Font = new System.Drawing.Font("넥슨Lv2고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbExcelSample.Location = new System.Drawing.Point(442, 242);
             this.lbExcelSample.Name = "lbExcelSample";
-            this.lbExcelSample.Size = new System.Drawing.Size(112, 15);
+            this.lbExcelSample.Size = new System.Drawing.Size(112, 16);
             this.lbExcelSample.TabIndex = 5;
             this.lbExcelSample.Text = "액셀 샘플 다운로드";
             // 
@@ -196,7 +196,7 @@ namespace TeacherSeatSetter {
             this.lbExcelupload.Font = new System.Drawing.Font("넥슨Lv2고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbExcelupload.Location = new System.Drawing.Point(462, 521);
             this.lbExcelupload.Name = "lbExcelupload";
-            this.lbExcelupload.Size = new System.Drawing.Size(69, 12);
+            this.lbExcelupload.Size = new System.Drawing.Size(71, 16);
             this.lbExcelupload.TabIndex = 6;
             this.lbExcelupload.Text = "액셀 업로드";
             this.lbExcelupload.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -222,17 +222,16 @@ namespace TeacherSeatSetter {
         }
 
         #endregion
-
-        private MetroFramework.Controls.MetroGrid grdStudentList;
         private MetroFramework.Controls.MetroComboBox comboClass;
         private MetroFramework.Controls.MetroButton btnExcelDownload;
         private MetroFramework.Controls.MetroButton btnExcelUpload;
         private MetroFramework.Controls.MetroButton btnDelete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn className;
-        private System.Windows.Forms.DataGridViewTextBoxColumn seatNumber;
         private Label lbExcelSample;
         private Label lbExcelupload;
+        private DataGridView grdStudentList;
+        private DataGridViewTextBoxColumn number;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn className;
+        private DataGridViewTextBoxColumn seatNumber;
     }
 }

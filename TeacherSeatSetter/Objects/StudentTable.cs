@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json.Linq;
 namespace TeacherSeatSetter {
     public class StudentTable {

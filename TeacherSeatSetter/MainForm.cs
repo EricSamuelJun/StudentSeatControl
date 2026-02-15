@@ -16,29 +16,49 @@ namespace TeacherSeatSetter {
         internal SeatControl seatControl;
         internal StudentControl studentControl;
         internal ShowFinalControl showFinalControl;
+
+        private Size seatControlSize;
+        private Size studentControlSize;
+        private Size showFinalControlSize;
+
         public List<StudentTable> students { get { return studentControl?.StudentBans; } }
         public List<Seat> seats { get { return seatControl?.seats; } }
-        private readonly int DEFAULT_MAIN_ADD_SIZE = 230;
-        private readonly int DEFAULT_PANEL_WIDTH = 620;
+        private readonly int DEFAULT_MAIN_ADD_SIZE = 200;
+        private readonly int DEFAULT_PANEL_WIDTH = 650;
         public MainForm() {
             InitializeComponent();
 
             seatControl = new SeatControl();
             studentControl = new StudentControl();
             showFinalControl = new ShowFinalControl();
+
+            // Store original designer sizes
+            seatControlSize = seatControl.Size;
+            studentControlSize = studentControl.Size;
+            showFinalControlSize = showFinalControl.Size;
         }
         private void setContentPanel(Control content) {
             if(contentPanel.Controls.Count == 1 && contentPanel.Controls[0] == content) {
                 contentPanel.Controls.Clear();
-                contentPanel.Width = DEFAULT_PANEL_WIDTH;
-                this.Width = DEFAULT_MAIN_ADD_SIZE + DEFAULT_PANEL_WIDTH;
+                this.ClientSize = new Size(DEFAULT_MAIN_ADD_SIZE + DEFAULT_PANEL_WIDTH, 700);
             } else {
                 contentPanel.Controls.Clear();
+
+                Size targetSize;
+                if (content == seatControl) targetSize = seatControlSize;
+                else if (content == studentControl) targetSize = studentControlSize;
+                else if (content == showFinalControl) targetSize = showFinalControlSize;
+                else targetSize = content.Size;
+
+                // Set form size based on content size + sidebar width
+                // Clientsize handles the internal area, ignoring borders and title bar
+                this.ClientSize = new Size(DEFAULT_MAIN_ADD_SIZE + targetSize.Width, targetSize.Height + 50); // 50 for top(30)/bottom(20) padding
+                
+                content.Dock = DockStyle.Fill;
                 contentPanel.Controls.Add(content);
+
                 if(content == showFinalControl) 
                     showFinalControl.OnFormCalled(students, seats);
-                contentPanel.Width = content.Width;
-                this.Width = DEFAULT_MAIN_ADD_SIZE + content.Width;
             }
         }
         private void StudentControllClick(object sender, EventArgs e) {

@@ -304,6 +304,8 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "SeatControl";
             this.Size = new System.Drawing.Size(795, 608);
+            this.UseCustomBackColor = true;
+            this.BackColor = System.Drawing.Color.White;
             this.seatPanel.ResumeLayout(false);
             this.seatPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grd_Items)).EndInit();

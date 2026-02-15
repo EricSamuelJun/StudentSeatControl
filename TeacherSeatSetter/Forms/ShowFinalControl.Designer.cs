@@ -129,6 +129,7 @@ namespace TeacherSeatSetter.Forms {
             this.Controls.Add(this.lv_Classes);
             this.Name = "ShowFinalControl";
             this.Size = new System.Drawing.Size(1001, 608);
+            this.BackColor = System.Drawing.Color.White;
             this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 

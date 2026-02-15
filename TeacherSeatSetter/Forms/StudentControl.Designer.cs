@@ -215,6 +215,8 @@ namespace TeacherSeatSetter {
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "StudentControl";
             this.Size = new System.Drawing.Size(583, 660);
+            this.UseCustomBackColor = true;
+            this.BackColor = System.Drawing.Color.White;
             ((System.ComponentModel.ISupportInitialize)(this.grdStudentList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

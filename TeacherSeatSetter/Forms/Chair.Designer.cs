@@ -25,34 +25,19 @@ namespace TeacherSeatSetter.Forms {
         /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
         /// </summary>
         private void InitializeComponent() {
-            this.label = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label
-            // 
-            this.label.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label.Font = new System.Drawing.Font("넥슨Lv2고딕", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label.Location = new System.Drawing.Point(0, 0);
-            this.label.Name = "label";
-            this.label.Size = new System.Drawing.Size(50, 50);
-            this.label.TabIndex = 0;
-            this.label.Text = "빵빵이";
-            this.label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Chair
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label);
             this.Name = "Chair";
             this.Size = new System.Drawing.Size(50, 50);
             this.ResumeLayout(false);
-            this.BackColor = System.Drawing.ColorTranslator.FromHtml("#EE7674");
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BackColor = System.Drawing.Color.Transparent;
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label;
     }
 }

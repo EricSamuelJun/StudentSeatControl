@@ -30,7 +30,7 @@ namespace TeacherSeatSetter.Forms {
             // Chair
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Name = "Chair";
             this.Size = new System.Drawing.Size(50, 50);
             this.ResumeLayout(false);

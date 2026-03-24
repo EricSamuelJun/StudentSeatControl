@@ -53,12 +53,71 @@ namespace TeacherSeatSetter.MVP.Presenters {
             try {
                 _view.ShowBusy(true);
                 _excelService.CreateSampleWorkbook(path);
-                _view.ShowInfo("Saved successfully.");
+                _view.ShowInfo("저장되었습니다.");
             } catch (Exception ex) {
-                _view.ShowError("Error\n" + ex.Message);
+                _view.ShowError("오류\n" + ex.Message);
             } finally {
                 _view.ShowBusy(false);
             }
+        }
+
+        public void OnCreateClass(string className) {
+            if (string.IsNullOrWhiteSpace(className)) {
+                _view.ShowError("반 이름을 입력해주세요.");
+                return;
+            }
+            if (_students.Exists(s => s.cName == className.Trim())) {
+                _view.ShowError("이미 같은 이름의 반이 존재합니다.");
+                return;
+            }
+            var newClass = new StudentTable(className.Trim());
+            _students.Add(newClass);
+            _view.BindClassList(_students);
+            _view.SelectClass(newClass);
+            _view.BindStudentList(newClass.students);
+        }
+
+        public void OnAddStudent(StudentTable currentClass, string name, string numberStr) {
+            if (currentClass == null) {
+                _view.ShowError("먼저 반을 선택해주세요.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(name)) {
+                _view.ShowError("학생 이름을 입력해주세요.");
+                return;
+            }
+            int num;
+            if (!int.TryParse(numberStr, out num)) {
+                _view.ShowError("번호는 숫자로 입력해주세요.");
+                return;
+            }
+            currentClass.AddRow(num, name, currentClass.cName);
+            _view.BindStudentList(currentClass.students);
+        }
+
+        public void OnEditStudent(StudentTable currentClass, Student student, string newName, string newNumberStr) {
+            if (student == null) {
+                _view.ShowError("수정할 학생을 선택해주세요.");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(newName)) {
+                _view.ShowError("학생 이름을 입력해주세요.");
+                return;
+            }
+            int num;
+            if (!int.TryParse(newNumberStr, out num)) {
+                _view.ShowError("번호는 숫자로 입력해주세요.");
+                return;
+            }
+            student.name = newName;
+            student.schoolNumber = num;
+            _view.BindStudentList(currentClass?.students);
+        }
+
+        public void OnDeleteStudent(StudentTable currentClass, Student student) {
+            if (student == null || currentClass == null) return;
+            currentClass.students.Remove(student);
+            _view.BindStudentList(currentClass.students);
         }
 
         public void OnImportExcelRequested() {
@@ -74,7 +133,7 @@ namespace TeacherSeatSetter.MVP.Presenters {
                     _students.Add(result.Table);
                     _view.BindClassList(_students);
                 }
-                _view.ShowInfo(string.Format("Imported rows: {0}\nRows with errors: {1}", result.ImportedCount, result.ErrorCount));
+                _view.ShowInfo(string.Format("가져온 학생: {0}명\n오류: {1}건", result.ImportedCount, result.ErrorCount));
             } catch (Exception ex) {
                 _view.ShowError(ex.Message);
             } finally {

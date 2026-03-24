@@ -74,5 +74,8 @@ namespace TeacherSeatSetter {
             this.seatNumber = student.seatNumber;
             student.seatNumber = tempindex;
         }
+        public override string ToString() {
+            return schoolNumber + ". " + name;
+        }
     }
 }

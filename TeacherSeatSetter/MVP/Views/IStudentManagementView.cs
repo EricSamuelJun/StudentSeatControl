@@ -9,5 +9,6 @@ namespace TeacherSeatSetter.MVP.Views {
         string RequestSampleSavePath(string defaultFileName);
         string RequestImportFilePath();
         void ShowBusy(bool isBusy);
+        void SelectClass(StudentTable studentTable);
     }
 }

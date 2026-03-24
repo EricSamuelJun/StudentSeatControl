@@ -1,17 +1,10 @@
-﻿using MetroFramework.Controls;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace TeacherSeatSetter.Forms {
     partial class ShowFinalControl {
-        /// <summary> 
-        /// 필수 디자이너 변수입니다.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// 사용 중인 모든 리소스를 정리합니다.
-        /// </summary>
-        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         protected override void Dispose(bool disposing) {
             if (disposing && (components != null)) {
                 components.Dispose();
@@ -21,126 +14,229 @@ namespace TeacherSeatSetter.Forms {
 
         #region 구성 요소 디자이너에서 생성한 코드
 
-        /// <summary> 
-        /// 디자이너 지원에 필요한 메서드입니다. 
-        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
-        /// </summary>
         private void InitializeComponent() {
-            this.lv_Classes = new MetroFramework.Controls.MetroListView();
-            this.lv_Seats = new MetroFramework.Controls.MetroListView();
-            this.contentPanel = new MetroFramework.Controls.MetroPanel();
-            this.tile_teacherTable = new MetroFramework.Controls.MetroTile();
-            this.btn_Capture = new MetroFramework.Controls.MetroButton();
+            this.leftPanel = new Panel();
+            this.lblClassSection = new Label();
+            this.lv_Classes = new ListView();
+            this.lblSeatSection = new Label();
+            this.lv_Seats = new ListView();
+            this.separator1 = new Panel();
+            this.btn_Random = new Button();
+            this.btn_Capture = new Button();
+            this.separator2 = new Panel();
+            this.btn_Save = new Button();
+            this.btn_Load = new Button();
+
+            this.contentPanel = new Panel();
+            this.tile_teacherTable = new Panel();
+            this.lblTeacherTable = new Label();
+
+            this.lblUnassigned = new Label();
+            this.lstUnassigned = new ListBox();
+
+            this.leftPanel.SuspendLayout();
             this.contentPanel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lv_Classes
-            // 
-            this.lv_Classes.Font = new System.Drawing.Font("넥슨Lv2고딕", 20F);
+
+            // ══════════════════════════════════════════
+            // 좌측 패널 (138px)
+            // ══════════════════════════════════════════
+            this.leftPanel.BackColor = Color.FromArgb(248, 249, 252);
+            this.leftPanel.Location = new Point(0, 0);
+            this.leftPanel.Size = new Size(138, 608);
+
+            // 반 선택 섹션
+            this.lblClassSection.Text = "반 선택";
+            this.lblClassSection.Font = new Font("맑은 고딕", 8F, FontStyle.Bold);
+            this.lblClassSection.ForeColor = Color.FromArgb(117, 117, 117);
+            this.lblClassSection.Location = new Point(8, 8);
+            this.lblClassSection.Size = new Size(122, 18);
+
+            this.lv_Classes.Font = new Font("맑은 고딕", 10F);
             this.lv_Classes.FullRowSelect = true;
-            this.lv_Classes.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lv_Classes.HeaderStyle = ColumnHeaderStyle.None;
             this.lv_Classes.HideSelection = false;
-            this.lv_Classes.Location = new System.Drawing.Point(0, 0);
             this.lv_Classes.MultiSelect = false;
-            this.lv_Classes.Name = "lv_Classes";
-            this.lv_Classes.OwnerDraw = true;
-            this.lv_Classes.Size = new System.Drawing.Size(132, 280);
-            this.lv_Classes.TabIndex = 0;
+            this.lv_Classes.Location = new Point(8, 28);
+            this.lv_Classes.Size = new Size(122, 170);
             this.lv_Classes.TabStop = false;
+            this.lv_Classes.BorderStyle = BorderStyle.FixedSingle;
             this.lv_Classes.UseCompatibleStateImageBehavior = false;
-            this.lv_Classes.UseSelectable = true;
-            this.lv_Classes.View = System.Windows.Forms.View.List;
+            this.lv_Classes.View = View.List;
             this.lv_Classes.SelectedIndexChanged += new System.EventHandler(this.whenClassesListIndexChanged);
-            // 
-            // lv_Seats
-            // 
-            this.lv_Seats.Font = new System.Drawing.Font("넥슨Lv2고딕", 20F);
+
+            // 교실 선택 섹션
+            this.lblSeatSection.Text = "교실 선택";
+            this.lblSeatSection.Font = new Font("맑은 고딕", 8F, FontStyle.Bold);
+            this.lblSeatSection.ForeColor = Color.FromArgb(117, 117, 117);
+            this.lblSeatSection.Location = new Point(8, 206);
+            this.lblSeatSection.Size = new Size(122, 18);
+
+            this.lv_Seats.Font = new Font("맑은 고딕", 10F);
             this.lv_Seats.FullRowSelect = true;
-            this.lv_Seats.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lv_Seats.HeaderStyle = ColumnHeaderStyle.None;
             this.lv_Seats.HideSelection = false;
-            this.lv_Seats.Location = new System.Drawing.Point(0, 328);
             this.lv_Seats.MultiSelect = false;
-            this.lv_Seats.Name = "lv_Seats";
-            this.lv_Seats.OwnerDraw = true;
-            this.lv_Seats.Size = new System.Drawing.Size(132, 280);
-            this.lv_Seats.TabIndex = 1;
+            this.lv_Seats.Location = new Point(8, 226);
+            this.lv_Seats.Size = new Size(122, 130);
             this.lv_Seats.TabStop = false;
+            this.lv_Seats.BorderStyle = BorderStyle.FixedSingle;
             this.lv_Seats.UseCompatibleStateImageBehavior = false;
-            this.lv_Seats.UseSelectable = true;
-            this.lv_Seats.View = System.Windows.Forms.View.List;
+            this.lv_Seats.View = View.List;
             this.lv_Seats.SelectedIndexChanged += new System.EventHandler(this.whenSeatListIndexChanged);
-            // 
-            // contentPanel
-            // 
-            this.contentPanel.Controls.Add(this.tile_teacherTable);
-            this.contentPanel.HorizontalScrollbarBarColor = true;
-            this.contentPanel.HorizontalScrollbarHighlightOnWheel = false;
-            this.contentPanel.HorizontalScrollbarSize = 10;
-            this.contentPanel.Location = new System.Drawing.Point(138, 0);
-            this.contentPanel.Name = "contentPanel";
-            this.contentPanel.Size = new System.Drawing.Size(858, 607);
-            this.contentPanel.TabIndex = 2;
-            this.contentPanel.VerticalScrollbarBarColor = true;
-            this.contentPanel.VerticalScrollbarHighlightOnWheel = false;
-            this.contentPanel.VerticalScrollbarSize = 10;
-            // 
-            // tile_teacherTable
-            // 
-            this.tile_teacherTable.ActiveControl = null;
-            this.tile_teacherTable.BackColor = System.Drawing.Color.SaddleBrown;
-            this.tile_teacherTable.Cursor = System.Windows.Forms.Cursors.No;
-            this.tile_teacherTable.Location = new System.Drawing.Point(366, 523);
-            this.tile_teacherTable.Name = "tile_teacherTable";
-            this.tile_teacherTable.Size = new System.Drawing.Size(130, 50);
-            this.tile_teacherTable.TabIndex = 6;
-            this.tile_teacherTable.TabStop = false;
-            this.tile_teacherTable.Text = "교탁";
-            this.tile_teacherTable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tile_teacherTable.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tile_teacherTable.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tile_teacherTable.UseCustomBackColor = true;
-            this.tile_teacherTable.UseSelectable = true;
-            // 
-            // btn_Capture
-            // 
-            this.btn_Capture.BackColor = System.Drawing.Color.Gold;
-            this.btn_Capture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_Capture.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Capture.FontSize = MetroFramework.MetroButtonSize.Tall;
-            this.btn_Capture.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_Capture.Location = new System.Drawing.Point(0, 280);
-            this.btn_Capture.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_Capture.Name = "btn_Capture";
-            this.btn_Capture.Size = new System.Drawing.Size(132, 48);
-            this.btn_Capture.TabIndex = 3;
-            this.btn_Capture.TabStop = false;
+
+            // 구분선 1
+            this.separator1.BackColor = Color.FromArgb(224, 224, 224);
+            this.separator1.Location = new Point(8, 370);
+            this.separator1.Size = new Size(122, 1);
+
+            // 배치 액션 버튼
+            this.btn_Random.Text = "랜덤 배치";
+            this.btn_Random.Font = new Font("맑은 고딕", 9F, FontStyle.Bold);
+            this.btn_Random.BackColor = Color.FromArgb(66, 165, 245);
+            this.btn_Random.ForeColor = Color.White;
+            this.btn_Random.FlatStyle = FlatStyle.Flat;
+            this.btn_Random.FlatAppearance.BorderSize = 0;
+            this.btn_Random.Cursor = Cursors.Hand;
+            this.btn_Random.Location = new Point(8, 380);
+            this.btn_Random.Size = new Size(122, 38);
+            this.btn_Random.TabStop = false;
+            this.btn_Random.Click += new System.EventHandler(this.btn_Random_Click);
+
             this.btn_Capture.Text = "캡쳐하기";
-            this.btn_Capture.UseCustomBackColor = true;
-            this.btn_Capture.UseSelectable = true;
+            this.btn_Capture.Font = new Font("맑은 고딕", 9F, FontStyle.Bold);
+            this.btn_Capture.BackColor = Color.FromArgb(255, 167, 38);
+            this.btn_Capture.ForeColor = Color.White;
+            this.btn_Capture.FlatStyle = FlatStyle.Flat;
+            this.btn_Capture.FlatAppearance.BorderSize = 0;
+            this.btn_Capture.Cursor = Cursors.Hand;
+            this.btn_Capture.Location = new Point(8, 422);
+            this.btn_Capture.Size = new Size(122, 38);
+            this.btn_Capture.TabStop = false;
             this.btn_Capture.Click += new System.EventHandler(this.btn_Capture_Click);
-            // 
+
+            // 구분선 2
+            this.separator2.BackColor = Color.FromArgb(224, 224, 224);
+            this.separator2.Location = new Point(8, 472);
+            this.separator2.Size = new Size(122, 1);
+
+            // 저장/불러오기 버튼
+            this.btn_Save.Text = "배치 저장";
+            this.btn_Save.Font = new Font("맑은 고딕", 9F);
+            this.btn_Save.BackColor = Color.FromArgb(76, 175, 80);
+            this.btn_Save.ForeColor = Color.White;
+            this.btn_Save.FlatStyle = FlatStyle.Flat;
+            this.btn_Save.FlatAppearance.BorderSize = 0;
+            this.btn_Save.Cursor = Cursors.Hand;
+            this.btn_Save.Location = new Point(8, 482);
+            this.btn_Save.Size = new Size(122, 34);
+            this.btn_Save.TabStop = false;
+            this.btn_Save.Click += new System.EventHandler(this.btn_Save_Click);
+
+            this.btn_Load.Text = "불러오기";
+            this.btn_Load.Font = new Font("맑은 고딕", 9F);
+            this.btn_Load.BackColor = Color.FromArgb(158, 158, 158);
+            this.btn_Load.ForeColor = Color.White;
+            this.btn_Load.FlatStyle = FlatStyle.Flat;
+            this.btn_Load.FlatAppearance.BorderSize = 0;
+            this.btn_Load.Cursor = Cursors.Hand;
+            this.btn_Load.Location = new Point(8, 520);
+            this.btn_Load.Size = new Size(122, 34);
+            this.btn_Load.TabStop = false;
+            this.btn_Load.Click += new System.EventHandler(this.btn_Load_Click);
+
+            // leftPanel에 컨트롤 추가
+            this.leftPanel.Controls.Add(this.lblClassSection);
+            this.leftPanel.Controls.Add(this.lv_Classes);
+            this.leftPanel.Controls.Add(this.lblSeatSection);
+            this.leftPanel.Controls.Add(this.lv_Seats);
+            this.leftPanel.Controls.Add(this.separator1);
+            this.leftPanel.Controls.Add(this.btn_Random);
+            this.leftPanel.Controls.Add(this.btn_Capture);
+            this.leftPanel.Controls.Add(this.separator2);
+            this.leftPanel.Controls.Add(this.btn_Save);
+            this.leftPanel.Controls.Add(this.btn_Load);
+
+            // ══════════════════════════════════════════
+            // 중앙 contentPanel (728x607)
+            // ══════════════════════════════════════════
+            this.contentPanel.Location = new Point(138, 0);
+            this.contentPanel.Size = new Size(728, 607);
+            this.contentPanel.BackColor = Color.White;
+
+            this.tile_teacherTable.BackColor = Color.FromArgb(40, 53, 100);
+            this.tile_teacherTable.Cursor = Cursors.No;
+            this.tile_teacherTable.Location = new Point(299, 540);
+            this.tile_teacherTable.Size = new Size(130, 42);
+            this.tile_teacherTable.TabStop = false;
+
+            this.lblTeacherTable.Text = "교탁";
+            this.lblTeacherTable.Font = new Font("맑은 고딕", 10F, FontStyle.Bold);
+            this.lblTeacherTable.ForeColor = Color.White;
+            this.lblTeacherTable.Dock = DockStyle.Fill;
+            this.lblTeacherTable.TextAlign = ContentAlignment.MiddleCenter;
+            this.tile_teacherTable.Controls.Add(this.lblTeacherTable);
+            this.contentPanel.Controls.Add(this.tile_teacherTable);
+
+            // ══════════════════════════════════════════
+            // 우측: 미배치 학생 (135px)
+            // ══════════════════════════════════════════
+            this.lblUnassigned.BackColor = Color.FromArgb(40, 53, 100);
+            this.lblUnassigned.ForeColor = Color.White;
+            this.lblUnassigned.Location = new Point(866, 0);
+            this.lblUnassigned.Size = new Size(135, 30);
+            this.lblUnassigned.Text = "  미배치 학생";
+            this.lblUnassigned.TextAlign = ContentAlignment.MiddleLeft;
+            this.lblUnassigned.Font = new Font("맑은 고딕", 9F, FontStyle.Bold);
+
+            this.lstUnassigned.AllowDrop = true;
+            this.lstUnassigned.BorderStyle = BorderStyle.FixedSingle;
+            this.lstUnassigned.Font = new Font("맑은 고딕", 10F);
+            this.lstUnassigned.FormattingEnabled = true;
+            this.lstUnassigned.ItemHeight = 20;
+            this.lstUnassigned.Location = new Point(866, 30);
+            this.lstUnassigned.Size = new Size(135, 578);
+            this.lstUnassigned.TabStop = false;
+            this.lstUnassigned.MouseDown += new MouseEventHandler(this.lstUnassigned_MouseDown);
+            this.lstUnassigned.DragEnter += new DragEventHandler(this.lstUnassigned_DragEnter);
+            this.lstUnassigned.DragDrop += new DragEventHandler(this.lstUnassigned_DragDrop);
+
+            // ══════════════════════════════════════════
             // ShowFinalControl
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btn_Capture);
+            // ══════════════════════════════════════════
+            this.AutoScaleDimensions = new SizeF(7F, 12F);
+            this.AutoScaleMode = AutoScaleMode.None;
+            this.Controls.Add(this.lstUnassigned);
+            this.Controls.Add(this.lblUnassigned);
             this.Controls.Add(this.contentPanel);
-            this.Controls.Add(this.lv_Seats);
-            this.Controls.Add(this.lv_Classes);
+            this.Controls.Add(this.leftPanel);
             this.Name = "ShowFinalControl";
-            this.Size = new System.Drawing.Size(1001, 608);
-            this.BackColor = System.Drawing.Color.White;
+            this.Size = new Size(1001, 608);
+            this.BackColor = Color.White;
+            this.leftPanel.ResumeLayout(false);
             this.contentPanel.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion
 
-        private MetroFramework.Controls.MetroListView lv_Classes;
-        private MetroFramework.Controls.MetroListView lv_Seats;
-        private MetroFramework.Controls.MetroPanel contentPanel;
-        private MetroButton btn_Capture;
-        private MetroTile tile_teacherTable;
+        private Panel leftPanel;
+        private Label lblClassSection;
+        private ListView lv_Classes;
+        private Label lblSeatSection;
+        private ListView lv_Seats;
+        private Panel separator1;
+        private Panel separator2;
+        private Button btn_Random;
+        private Button btn_Capture;
+        private Button btn_Save;
+        private Button btn_Load;
+
+        private Panel contentPanel;
+        private Panel tile_teacherTable;
+        private Label lblTeacherTable;
+
+        private Label lblUnassigned;
+        private ListBox lstUnassigned;
     }
 }

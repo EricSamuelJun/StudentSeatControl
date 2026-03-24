@@ -52,12 +52,12 @@ namespace TeacherSeatSetter.MVP.Presenters {
 
         public void SaveSelectedSeat(string seatName) {
             if (string.IsNullOrWhiteSpace(seatName)) {
-                _view.ShowError("Seat name is required.\nSave failed.");
+                _view.ShowError("좌석 이름을 입력해주세요.\n저장에 실패했습니다.");
                 return;
             }
 
             if (_selectedSeat == null) {
-                _view.ShowError("No seat selected.\nSave failed.");
+                _view.ShowError("선택된 좌석이 없습니다.\n저장에 실패했습니다.");
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace TeacherSeatSetter.MVP.Presenters {
         }
 
         public void IncreaseRow() {
-            if (_selectedSeat == null || _selectedSeat.rowCount >= 6) {
+            if (_selectedSeat == null || _selectedSeat.rowCount >= 10) {
                 return;
             }
 
@@ -89,7 +89,7 @@ namespace TeacherSeatSetter.MVP.Presenters {
         }
 
         public void IncreaseColumn() {
-            if (_selectedSeat == null || _selectedSeat.columnCount >= 6) {
+            if (_selectedSeat == null || _selectedSeat.columnCount >= 10) {
                 return;
             }
 

@@ -6,7 +6,9 @@ namespace TeacherSeatSetter.MVP.Views {
         void BindClasses(IEnumerable<StudentTable> students);
         void BindSeats(IEnumerable<Objects.Seat> seats);
         void RenderLayout(IReadOnlyList<SeatRenderItem> items);
+        void RenderLayout(IReadOnlyList<SeatRenderItem> items, Objects.Seat seat);
         void ClearLayout();
+        void BindUnassignedStudents(IEnumerable<Student> students);
         void ShowInfo(string message);
     }
 }

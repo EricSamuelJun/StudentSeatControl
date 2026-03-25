@@ -54,14 +54,14 @@ namespace TeacherSeatSetter.Forms {
             base.OnPaint(e);
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            Color backColor = ColorTranslator.FromHtml("#FFFFFF");
-            Color borderColor = ColorTranslator.FromHtml("#DDDDDD");
-            Color textColor = ColorTranslator.FromHtml("#333333");
-            float borderWidth = 1.5f;
+            Color backColor = Color.FromArgb(245, 245, 245);       // 빈 좌석: 밝은 회색
+            Color borderColor = Color.FromArgb(210, 210, 210);    // 빈 좌석 테두리
+            Color textColor = Color.FromArgb(51, 51, 51);
+            float borderWidth = 1.2f;
 
             if (this.student != null) {
-                backColor = ColorTranslator.FromHtml("#E3F2FD");
-                borderColor = ColorTranslator.FromHtml("#2196F3");
+                backColor = Color.FromArgb(255, 243, 224);         // 배정됨: 따뜻한 크림
+                borderColor = Color.FromArgb(220, 190, 160);      // 따뜻한 베이지 테두리
             }
 
             if (_highlight == DragHighlight.ValidDrop) {

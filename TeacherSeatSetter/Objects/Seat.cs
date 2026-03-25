@@ -6,9 +6,10 @@ namespace TeacherSeatSetter.Objects {
         // ShowFinalControl의 contentPanel 기본 크기
         private const int DEFAULT_PANEL_WIDTH = 728;
         private const int DEFAULT_PANEL_HEIGHT = 607;
-        private const int CHAIR_SIZE = 50;
+        private const int CHAIR_SIZE = 80;
         private const int PADDING = 15;
-        private const int TEACHER_TABLE_HEIGHT = 70;
+        private const int TITLE_HEIGHT = 48;
+        private const int TEACHER_TABLE_HEIGHT = 60;
 
         public SeatType seatType;
         public string name;
@@ -47,15 +48,15 @@ namespace TeacherSeatSetter.Objects {
         /// <summary>seatType에 따른 개별 체어 너비</summary>
         public int GetChairWidth() {
             switch (seatType) {
-                case SeatType.TwoSeat: return 40;
-                case SeatType.ThreeSeat: return 30;
+                case SeatType.TwoSeat: return 65;
+                case SeatType.ThreeSeat: return 55;
                 default: return CHAIR_SIZE;
             }
         }
 
         /// <summary>체어 높이 (모든 타입 동일)</summary>
         public int GetChairHeight() {
-            return CHAIR_SIZE;
+            return 40;
         }
 
         public override string ToString() {
@@ -94,13 +95,14 @@ namespace TeacherSeatSetter.Objects {
             int deskWidth = chairW * seatTypeInt + (seatTypeInt - 1) * 2;
 
             int availableWidth = panelWidth - 2 * PADDING;
-            int availableHeight = panelHeight - TEACHER_TABLE_HEIGHT - 2 * PADDING;
+            int availableHeight = panelHeight - TITLE_HEIGHT - TEACHER_TABLE_HEIGHT - 2 * PADDING;
 
             int spacingX = availableWidth / rowCount;
             int spacingY = availableHeight / columnCount;
 
             int xval = PADDING + spacingX * xIndex + (spacingX - deskWidth) / 2;
-            int yval = PADDING + availableHeight - spacingY * (yIndex + 1) + (spacingY - CHAIR_SIZE) / 2;
+            int chairH = GetChairHeight();
+            int yval = PADDING + TITLE_HEIGHT + availableHeight - spacingY * (yIndex + 1) + (spacingY - chairH) / 2;
 
             return new Point(xval, yval);
         }

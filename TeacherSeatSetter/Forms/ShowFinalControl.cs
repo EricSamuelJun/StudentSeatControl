@@ -50,21 +50,35 @@ namespace TeacherSeatSetter.Forms {
             }
 
             using (SaveFileDialog saveFileDialog = new SaveFileDialog()) {
-                saveFileDialog.Filter = "JPG files (*.jpg)|*.jpg";
-                saveFileDialog.DefaultExt = "jpg";
+                saveFileDialog.Filter = "PNG 이미지 (*.png)|*.png|JPG 이미지 (*.jpg)|*.jpg";
+                saveFileDialog.DefaultExt = "png";
                 DateTime now = DateTime.Now;
                 string className = lv_Classes.SelectedItems.Count > 0 ? lv_Classes.SelectedItems[0].Text : "반";
                 string seatName = lv_Seats.SelectedItems.Count > 0 ? lv_Seats.SelectedItems[0].Text : "교실";
                 string semester = (now.Month >= 8 || now.Month == 1) ? "2학기" : "1학기";
                 string filename = now.Year + " " + semester + " " + className + " " + seatName + " 자리배치";
-                saveFileDialog.FileName = filename + ".jpg";
+                saveFileDialog.FileName = filename + ".png";
                 saveFileDialog.Title = "저장 위치 선택";
                 if (saveFileDialog.ShowDialog() == DialogResult.OK) {
-                    using (Bitmap bmp = new Bitmap(contentPanel.Width, contentPanel.Height)) {
-                        contentPanel.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
-                        bmp.Save(saveFileDialog.FileName, ImageFormat.Jpeg);
-                        MessageBox.Show("저장 완료: " + saveFileDialog.FileName);
+                    // 여백 포함한 깔끔한 캡쳐
+                    int margin = 20;
+                    using (Bitmap panelBmp = new Bitmap(contentPanel.Width, contentPanel.Height)) {
+                        contentPanel.DrawToBitmap(panelBmp, new Rectangle(0, 0, panelBmp.Width, panelBmp.Height));
+
+                        int totalW = panelBmp.Width + margin * 2;
+                        int totalH = panelBmp.Height + margin * 2;
+                        using (Bitmap output = new Bitmap(totalW, totalH)) {
+                            using (Graphics g = Graphics.FromImage(output)) {
+                                g.Clear(Color.White);
+                                g.DrawImage(panelBmp, margin, margin);
+                            }
+
+                            ImageFormat fmt = saveFileDialog.FileName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase)
+                                ? ImageFormat.Jpeg : ImageFormat.Png;
+                            output.Save(saveFileDialog.FileName, fmt);
+                        }
                     }
+                    MessageBox.Show("저장 완료: " + saveFileDialog.FileName);
                 }
             }
         }
@@ -91,9 +105,21 @@ namespace TeacherSeatSetter.Forms {
             RenderLayout(items, null);
         }
 
+        private void UpdateTitle() {
+            string className = lv_Classes.SelectedItems.Count > 0 ? lv_Classes.SelectedItems[0].Text : "";
+            string seatName = lv_Seats.SelectedItems.Count > 0 ? lv_Seats.SelectedItems[0].Text : "";
+            if (!string.IsNullOrEmpty(className) && !string.IsNullOrEmpty(seatName))
+                lblTitle.Text = className + " " + seatName + " 자리배치표";
+            else if (!string.IsNullOrEmpty(className))
+                lblTitle.Text = className + " 자리배치표";
+            else
+                lblTitle.Text = "자리배치표";
+        }
+
         public void RenderLayout(IReadOnlyList<SeatRenderItem> items, Seat seat) {
             ClearLayout();
             if (items == null) return;
+            UpdateTitle();
 
             _lastRenderedItems = items;
 

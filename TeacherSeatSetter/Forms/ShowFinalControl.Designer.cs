@@ -162,7 +162,18 @@ namespace TeacherSeatSetter.Forms {
             // ══════════════════════════════════════════
             this.contentPanel.Location = new Point(138, 0);
             this.contentPanel.Size = new Size(728, 607);
-            this.contentPanel.BackColor = Color.White;
+            this.contentPanel.BackColor = Color.FromArgb(218, 232, 245);  // 소프트 블루 배경
+
+            // 타이틀 라벨
+            this.lblTitle = new Label();
+            this.lblTitle.Text = "자리배치표";
+            this.lblTitle.Font = new Font("맑은 고딕", 16F, FontStyle.Bold);
+            this.lblTitle.ForeColor = Color.FromArgb(40, 53, 100);
+            this.lblTitle.BackColor = Color.Transparent;
+            this.lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            this.lblTitle.Location = new Point(0, 8);
+            this.lblTitle.Size = new Size(728, 40);
+            this.contentPanel.Controls.Add(this.lblTitle);
 
             this.tile_teacherTable.BackColor = Color.FromArgb(40, 53, 100);
             this.tile_teacherTable.Cursor = Cursors.No;
@@ -233,6 +244,7 @@ namespace TeacherSeatSetter.Forms {
         private Button btn_Load;
 
         private Panel contentPanel;
+        private Label lblTitle;
         private Panel tile_teacherTable;
         private Label lblTeacherTable;
 
